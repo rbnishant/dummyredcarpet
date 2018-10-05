@@ -8,7 +8,7 @@ Performing redirects is simple in Flask. Remember to pay attention to the
 HTTP Status Codes.
 """
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import requests
 
 app = Flask(__name__)
@@ -31,3 +31,10 @@ def request_info():
     client_location = requests.get(geoip_url).json()
     return render_template('request/info.html',
                            client_location=client_location)
+
+@app.route('/getJson')
+def json():
+    return jsonify({
+    	"id": 1,
+    	"name": 'nishant'
+    })
